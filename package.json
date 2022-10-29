@@ -1,0 +1,14 @@
+{
+  "name": "movie_sorter",
+  "version": "1.0.0",
+  "description": "Sort those movies!",
+  "main": "movie_sorter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brian Kozub <brian@briankozub.com> (https://briankozub.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "jsdom": "^20.0.1"
+  }
+}
