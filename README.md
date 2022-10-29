@@ -16,4 +16,4 @@ The string assigned to the 'movies_list' variable is a sample of the actual site
 
     `node movie_sorter`
 
-You should see the unsorted collection, printed to the console, followed by the sorted collection.
+You should see the unsorted prices, printed to the console, followed by the sorted prices.

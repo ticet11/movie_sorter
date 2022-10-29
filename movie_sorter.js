@@ -5,8 +5,9 @@ global.DOMParser = new JSDOM().window.DOMParser;
 // Convert string to HTML element
 const HTML_MAKER = (html_string) => {
 	const parser = new DOMParser();
-	const doc = parser.parseFromString(html_string, "text/html");
-	return doc.body;
+	const html_obj = parser.parseFromString(html_string, "text/html");
+	const ul_element = html_obj.body.firstChild;
+	return ul_element;
 };
 
 // Retrieve and return price, as a number, for each item
@@ -33,7 +34,14 @@ const ARRAY_TO_COLLECTION = (items_array, collection) => {
 
 // Sort the array by price, obviously
 const SORT_BY_PRICE = (items_array, collection) => {
-	console.log(collection);
+	console.log("pre-sort");
+	items_array.forEach((item) => {
+		if (item.querySelector("span[data-hook='product-item-price-to-pay']"))
+			console.log(
+				item.querySelector("span[data-hook='product-item-price-to-pay']").textContent
+			);
+		else console.log("priceless");
+	});
 
 	items_array.sort((a, b) => {
 		a_amount = GET_PRICE(a);
@@ -42,11 +50,18 @@ const SORT_BY_PRICE = (items_array, collection) => {
 		return a_amount - b_amount;
 	});
 
+	console.log("\r\npost-sort");
+	items_array.forEach((item) => {
+		if (item.querySelector("span[data-hook='product-item-price-to-pay']"))
+			console.log(
+				item.querySelector("span[data-hook='product-item-price-to-pay']").textContent
+			);
+		else console.log("priceless");
+	});
+
 	REMOVE_CHILDREN(collection);
 
 	ARRAY_TO_COLLECTION(items_array, collection);
-
-	console.log(collection);
 };
 
 const movies_list = `<ul class="S4WbK_ c2Zj9x" data-hook="product-list-wrapper" data-grid-type="1">
@@ -558,6 +573,6 @@ const movies_list = `<ul class="S4WbK_ c2Zj9x" data-hook="product-list-wrapper" 
 
 const movies_collection = HTML_MAKER(movies_list);
 
-const movies_array = [...movies_collection];
+const movies_array = [...movies_collection.children];
 
 SORT_BY_PRICE(movies_array, movies_collection);
